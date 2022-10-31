@@ -1,0 +1,109 @@
+{
+  "1" : {
+    "1" : "Vis ta foi avec fun!",
+    "2" : "La Sainte Bible",
+    "3" : "Ouvrez pour les détails...",
+    "4" : "Blogs",
+    "5" : "Lire les blogs de la churche",
+    "6" : "Événements",
+    "7" : "Liste des événements",
+    "8" : "Quizz",
+    "9" : "Relever le défi"
+  },
+  "2" : {
+    "1" : "Choisissez votre pays"
+  },
+  "3" : {
+    "1" : "Musique",
+    "2" : "Toutes vos chansons préférées, sous toutes ses formes ici",
+    "3" : "Cantiques",
+    "4" : "Ouvrir pour les détails",
+    "5" : "Artistes",
+    "6" : "Ouvrir pour les détails"
+  },
+  "4" : {
+    "1" : "Livres",
+    "2" : "Chapitres",
+    "3" : "Versets",
+    "4" : "Liste des livres",
+    "5" : "Liste des chapitres",
+    "6" : "Liste des versets"
+  },
+  "5" : {
+    "1" : "Lecture de la bible sainte",
+    "2" : "Votre navigateur ne supporte pas le fichier"
+  },
+  "6" : {
+    "1" : "Blogs",
+    "2" : "Recherche",
+    "3" : "Aucun blogs trouvé"
+  },
+  "7" : {
+    "1" : "Événements",
+    "2" : "Prochainement",
+    "3" : "Passé",
+    "4" : "Aucun événement trouvé"
+  },
+  "8" : {
+    "1" : "Cantiques",
+    "2" : "Recherche"
+  },
+  "9" : {
+    "1" : "Cantique"
+  },
+  "10" : {
+    "1" : "Profil",
+    "2" : "Informations",
+    "3" : "Changer de langue",
+    "4" : "Voulez-vous vraiment vous déconnecter ?",
+    "5" : "ANNULER",
+	"6" : "Mettre a jour profil",
+    "7" : "Se connecté avec le téléphone",
+    "8" : "Se connecté avec Google"
+  },
+  "11" : {
+    "1" : "Mettre à jour le profil",
+    "2" : "Sauvegarder",
+    "3" : "Chargement...",
+	"4" : "Informations utilisateur",
+	"5" : "Noms"
+  },
+  "12" : {
+    "1" : "Langue de mise à jour",
+    "2" : "Langue des informations",
+    "3" : "Automatique",
+    "4" : "Enregistrer"
+  },
+  "13" : {
+    "1" : "Connecter le téléphone de la sorcière",
+    "2" : "Numéro de pays",
+    "3" : "Numéro de téléphone",
+    "4" : "Envoyer",
+    "5" : "Entrez le code reçu",
+    "6" : "Confirmer"
+  },
+  "14" : {
+    "1" : "Bible",
+    "2" : "Musique"
+  },
+  "15" : {
+    "1" : "Vue d'ensemble",
+    "2" : "Commentaires",
+    "3" : "Ecrire",
+    "4" : "Votre réponse...",
+    "5" : "Envoyer",
+    "6" : "Ecrire...",
+    "7" : "Rapport",
+    "8" : "Spam ou contenu frauduleux",
+    "9" : "Pornographie, vulgaire",
+    "10" : "Langage grossier ou inapproprié",
+    "11" : "Offensive",
+    "12" : "Discrimination raciale",
+    "13" : "Autre"
+  },
+  "16" : {
+    "1" : "Envoyer avec succès",
+    "2" : "L'article a été ajouté avec succès à l'archive",
+    "3" : "L'article a été retiré des archives avec succès"
+  }
+}

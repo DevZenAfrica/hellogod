@@ -1,0 +1,39 @@
+<ion-header class="text-white ion-no-border" translucent="true">
+  <ion-toolbar color="translucent" *ngIf="isSearch">
+    <ion-searchbar (ionInput)="filterListTransaction($event)" [placeholder]="'Search'" (ionCancel)="isSearch = !isSearch" showCancelButton="always"></ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar color="translucent" *ngIf="!isSearch">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/betweenus"></ion-back-button>
+      <ion-title class="font-medium">{{'7.1' | translate}}</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="isSearch = true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="translucent" *ngIf="!isSearch">
+    <ion-segment (ionChange)="segmentChanged($event)" value="upcomming" color="primary" class="border-b border-gray-700">
+      <ion-segment-button value="upcomming">
+        {{'7.2' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="past">
+        {{'7.3' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <section class="grid justify-items-center space-y-2 py-5 px-3">
+    <p *ngIf="events.length === 0" class="text-gray-200">
+      {{'7.4' | translate}}
+    </p>
+    <ng-container *ngFor="let article of events">
+      <app-miniature-article *ngIf="(currentSegment === 'upcomming' && !isEventPass(article.dateEvent)) || (currentSegment === 'past' && isEventPass(article.dateEvent))" [idArticle]="article.id" [data]="article"></app-miniature-article>
+    </ng-container>
+  </section>
+</ion-content>

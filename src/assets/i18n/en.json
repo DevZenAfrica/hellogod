@@ -1,0 +1,109 @@
+{
+  "1": {
+    "1": "Live your faith with fun!",
+    "2": "Holy Bible",
+    "3": "Open for more details..",
+    "4": "Blogs",
+    "5": "Read churche's blogs",
+    "6": "Events",
+    "7": "List of events",
+    "8": "Quizz",
+    "9": "Take the challenge"
+  },
+  "2": {
+    "1": "Choose your country"
+  },
+  "3": {
+    "1": "Music",
+    "2": "All your favorite songs, in all its forms here",
+    "3": "Canticles",
+    "4": "Open for more details",
+    "5": "Artists",
+    "6": "Open for more details"
+  },
+  "4": {
+    "1": "Books",
+    "2": "Chapters",
+    "3": "Verses",
+    "4": "List of books",
+    "5": "List of chapters",
+    "6": "List of verses"
+  },
+  "5": {
+    "1": "Holy bible reading",
+    "2": "Your browser does not support the file"
+  },
+  "6": {
+    "1": "Blogs",
+    "2": "Search",
+    "3": "No blogs found"
+  },
+  "7": {
+    "1": "Events",
+    "2": "Upcomming",
+    "3": "Past",
+    "4": "No events found"
+  },
+  "8": {
+    "1": "Canticles",
+    "2": "Search"
+  },
+  "9": {
+    "1": "Canticle"
+  },
+  "10": {
+    "1": "Profil",
+    "2": "Informations",
+    "3": "Change language",
+    "4" : "Do you really want to disconnect ?",
+    "5" : "CANCEL",
+    "6" : "Update profil",
+    "7" : "Login with a phone number",
+    "8" : "Connect with google"
+  },
+  "11": {
+	"1": "Update profile",
+	"2": "Save",
+	"3": "Loading...",
+	"4": "Informations user",
+	"5": "Name"
+  },
+  "12": {
+    "1" : "Update language",
+    "2" : "Informations language",
+    "3" : "Automatic",
+    "4" : "Save"
+  },
+  "13": {
+    "1" : "Connect witch phone",
+    "2" : "Country number",
+    "3" : "Phone number",
+    "4" : "Send",
+    "5" : "Enter the received code",
+    "6" : "Confirm"
+  },
+  "14": {
+    "1" : "Bible",
+    "2" : "Music"
+  },
+  "15": {
+    "1": "Overview",
+    "2": "Comments",
+    "3": "Write",
+    "4": "Your answer...",
+    "5": "Send",
+    "6": "Write...",
+    "7": "Report",
+    "8": "Spam or fraudulent content",
+    "9": "Pornography, vulgar",
+    "10": "Rude or inappropriate language",
+    "11": "Offensive",
+    "12": "Racial Discrimination",
+    "13": "Other"
+  },
+  "16": {
+    "1": "Send with success",
+    "2": "The article has been successfully added to the archive",
+    "3": "The article has been successfully removed from the archive"
+  }
+}

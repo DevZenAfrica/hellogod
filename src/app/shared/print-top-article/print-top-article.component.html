@@ -1,0 +1,5 @@
+<ion-slides class="mb-4" pager="false" [options]="slideOpts">
+  <ion-slide *ngFor="let article of articlesTop">
+    <app-miniature-article [data]="article" [idArticle]="article.id" [skin]="'top'"></app-miniature-article>
+  </ion-slide>
+</ion-slides>

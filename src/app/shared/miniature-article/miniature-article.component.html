@@ -1,0 +1,47 @@
+<a class="block bg-white border rounded-lg overflow-hidden max-w-full" *ngIf="data && skin === 'card' && data.categorie === 'event'" href="article/{{data.id}}">
+  <div class="p-2 max-w-sm bg-gray-50" *ngIf="data.dateEvent">
+    <div class="grid grid-cols-3 gap-2">
+      <div class="inline align-middle flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 text-orange-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+        </svg>
+        &nbsp;
+        <span class="text-base font-medium">{{data.dateEvent | date : 'd MMM'}}</span>
+      </div>
+
+      <div class="inline-block align-middle flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 text-orange-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        &nbsp;
+        <span class="text-base font-medium">{{data.dateEvent | date : 'h:mm a'}}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="data.miniature" class="h-32 w-full bg-cover bg-center" style="backgroundImage: url({{data.miniature}})"></div>
+  <div class="p-2 max-w-sm">
+    <span class="text-gray-300 text-sm">
+      Event info
+    </span>
+    <h3 class="font-medium py-1 text-xl">
+      {{data.title}}
+    </h3>
+    <p class="font-light py-2 text-sm text-gray-700">
+      {{data.description}}
+    </p>
+  </div>
+</a>
+
+<a *ngIf="data && skin === 'card' && data.categorie === 'blog'" href="article/{{data.id}}" class="space-x-3 flex items-center h-fit bg-white rounded-lg border pr-3 py-3 shadow-md max-w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+  <div class="h-28 w-1/3 bg-cover bg-center rounded" style="background: url({{data.miniature}}) no-repeat 50% 50%"></div>
+  <div class="w-2/3 flex flex-col justify-between leading-normal">
+    <span class="text-right text-sm font-light text-orange-500">{{data.datePublication | date : 'd MMM, YYYY'}}</span>
+    <h5 class="my-2 text-base font-medium tracking-tight text-gray-900 dark:text-white">{{data.title}}</h5>
+    <p class="font-light text-gray-700 text-sm" [innerHTML]="data.description.replace('/<[^>]*>/g', '').length > 90 ? data.description.replace('/<[^>]*>/g', '').substring(0, 90) + '...' : data.content"></p>
+  </div>
+</a>
+
+<a *ngIf="data && skin === 'top' && data.miniatureTop" href="article/{{data.id}}" style="width: 330px; height: 330px" class="w-full relative items-start flex rounded-lg shadow-md bg-cover bg-center" >
+  <div class="absolute h-full w-full bg-cover bg-center rounded-lg" style="backgroundImage: url({{data.miniatureTop}})"></div>
+  <div class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black rounded-lg opacity-30"></div>
+</a>

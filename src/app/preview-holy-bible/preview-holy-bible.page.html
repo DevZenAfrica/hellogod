@@ -1,0 +1,38 @@
+<ion-header class="text-white ion-no-border" translucent="true">
+  <ion-toolbar color="translucent" class="backdrop-blur-sm bg-black/25">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="holybible"></ion-back-button>
+      <ion-title>{{'5.1' | translate}}</ion-title>
+    </ion-buttons>
+    <ion-buttons *ngIf="indexPlay >= 0" slot="end" class="p-3" (click)="playText()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500 {{isLoadingAudio ? 'animate-spin' : (dataTextPlay ? 'animate-pulse' : '')}}" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path fill="currentColor" d="M10 3a7 7 0 0 0-7 7v1h1.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5H4a2 2 0 0 1-2-2v-6a8 8 0 1 1 16 0v6a2 2 0 0 1-2 2h-.5a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5H17v-1a7 7 0 0 0-7-7Zm.5 7.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm-3 1.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 1 .5-.5Zm5.5.5a.5.5 0 0 0-1 0v4a.5.5 0 0 0 1 0v-4Z"/></svg>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-progress-bar color="primary" *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+</ion-header>
+
+<ion-content class="contain-general" fullscreen="true">
+  <section *ngIf="contenu">
+    <h3 class="px-7 my-4 text-white font-medium text-xl">{{book}}</h3>
+    <div class="bg-white p-4">
+      <div class="grid grid-cols-2 gap-4 mb-1 text-gray-900 text-sm font-bold">
+        <div class="text-left">CHAP {{chap}}</div>
+        <div class="text-right">VERSE 1-{{lastIndexVerse - 1}}</div>
+      </div>
+
+      <div class="text-sm font-light space-y-2 mt-3">
+        <p (click)="updateIndexPlay(i)" *ngFor="let ct of contenu; let i = index" id="verse_{{ct.verse.toString()}}" class="{{ct.verse.toString() === (indexPlay + 1).toString() ? 'bg-yellow-100' : ''}}">
+          <span class="font-medium">{{ct.verse}}.</span>&nbsp;<span>{{ct.text.toString().replace('¶', '')}}</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</ion-content>
+
+<ion-footer translucent="true" class="backdrop-blur-sm bg-black/75" *ngIf="dataTextPlay">
+  <ion-toolbar color="translucent" class="px-2 text-white text-center items-center">
+    <audio (ended)="autoPlayVerse()" controls autoplay class="inline-block" type="audio/mp3" src="{{dataTextPlay}}">
+      {{'5.2' | translate}}
+    </audio>
+  </ion-toolbar>
+</ion-footer>

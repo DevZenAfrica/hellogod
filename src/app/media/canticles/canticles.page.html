@@ -1,0 +1,25 @@
+<ion-header class="text-white ion-no-border" translucent="true">
+  <ion-toolbar color="translucent" *ngIf="isSearch" class="backdrop-blur-sm bg-black/50">
+    <ion-searchbar (ionInput)="filterListTransaction($event)" [placeholder]="('8.2' | translate)" (ionCancel)="isSearch = !isSearch" showCancelButton="always"></ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar color="translucent" *ngIf="!isSearch" class="backdrop-blur-sm bg-black/50">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/media"></ion-back-button>
+      <ion-title class="font-medium">{{'8.1' | translate}}</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="isSearch = true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-progress-bar color="primary" *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <section class="py-4 space-y-2 px-5">
+    <app-miniature-canticle [skin]="selectionParam && selectionParam === 'artists' ? selectionParam : 'all'" [data]="canticle" *ngFor="let canticle of canticles"></app-miniature-canticle>
+  </section>
+</ion-content>
