@@ -7,7 +7,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { CommentService } from 'src/app/services/comment.service';
 import {UtilisateurService} from '../../services/utilisateur.service';
 import {Report} from '../../models/report';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-miniature-comment',

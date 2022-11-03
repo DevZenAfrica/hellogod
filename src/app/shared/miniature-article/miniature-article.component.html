@@ -18,16 +18,16 @@
       </div>
     </div>
   </div>
-  <div *ngIf="data.miniature" class="h-32 w-full bg-cover bg-center" style="backgroundImage: url({{data.miniature}})"></div>
+  <div *ngIf="data.miniature" class="h-32 w-full bg-cover bg-center" style="backgroundImage: url({{getValueTraduct(data.miniature)}})"></div>
   <div class="p-2 max-w-sm">
     <span class="text-gray-300 text-sm">
       Event info
     </span>
     <h3 class="font-medium py-1 text-xl">
-      {{data.title}}
+      {{getValueTraduct(data.title)}}
     </h3>
     <p class="font-light py-2 text-sm text-gray-700">
-      {{data.description}}
+      {{getValueTraduct(data.description)}}
     </p>
   </div>
 </a>
@@ -37,11 +37,11 @@
   <div class="w-2/3 flex flex-col justify-between leading-normal">
     <span class="text-right text-sm font-light text-orange-500">{{data.datePublication | date : 'd MMM, YYYY'}}</span>
     <h5 class="my-2 text-base font-medium tracking-tight text-gray-900 dark:text-white">{{data.title}}</h5>
-    <p class="font-light text-gray-700 text-sm" [innerHTML]="data.description.replace('/<[^>]*>/g', '').length > 90 ? data.description.replace('/<[^>]*>/g', '').substring(0, 90) + '...' : data.content"></p>
+    <p class="font-light text-gray-700 text-sm" [innerHTML]="data.description.replace('/<[^>]*>/g', '').length > 90 ? getValueTraduct(data.description.replace('/<[^>]*>/g', '').substring(0, 90)) + '...' : getValueTraduct(data.content)"></p>
   </div>
 </a>
 
 <a *ngIf="data && skin === 'top' && data.miniatureTop" href="article/{{data.id}}" style="width: 330px; height: 330px" class="w-full relative items-start flex rounded-lg shadow-md bg-cover bg-center" >
-  <div class="absolute h-full w-full bg-cover bg-center rounded-lg" style="backgroundImage: url({{data.miniatureTop}})"></div>
+  <div class="absolute h-full w-full bg-cover bg-center rounded-lg" style="backgroundImage: url({{getValueTraduct(data.miniatureTop)}})"></div>
   <div class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black rounded-lg opacity-30"></div>
 </a>

@@ -7,7 +7,7 @@ export const environment = {
   appName: 'Hello GOD',
   apiBible: 'multilingual-bible.p.rapidapi.com',
   numberVersion: 0,
-  version: '31.10.22-10.44',
+  version: '03.11.22-17.58',
   yearVersion: '2022',
   apiTextToSpeech: 'cloudlabs-text-to-speech.p.rapidapi.com',
   //rapidApiKey: 'c79e7cce1dmsh6fd8ba52278c9d4p1d6288jsn7bbcd57be239',

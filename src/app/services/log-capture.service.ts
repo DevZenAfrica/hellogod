@@ -28,7 +28,7 @@ export class LogCaptureService {
   }
 
   saveLogInDataBase(data) {
-    firebase.firestore().collection('logs-events').doc().set(Object.assign({}, data));
+    //firebase.firestore().collection('logs-events').doc().set(Object.assign({}, data));
   }
 
   getDateGoodFormat(date: string) {

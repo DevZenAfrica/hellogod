@@ -10,6 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Article} from '../models/article';
 import {ArticleService} from '../services/article.service';
 import {ApiService} from "../services/api.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-preview-article',
@@ -27,7 +28,7 @@ export class PreviewArticlePage implements OnInit {
   currentUser: Utilisateur = null;
   isLoading = false;
 
-  constructor(private apiService: ApiService, private alertService: AlertService, private userService: UtilisateurService, private authService: AuthentificationService, private commentService: CommentService, private articleService: ArticleService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
+  constructor(private translate: TranslateService, private apiService: ApiService, private alertService: AlertService, private userService: UtilisateurService, private authService: AuthentificationService, private commentService: CommentService, private articleService: ArticleService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     if(this.activatedRoute.snapshot.paramMap.get('id').split('?').length > 1) { this.scrollComment = true; }
@@ -114,6 +115,14 @@ export class PreviewArticlePage implements OnInit {
         }
       }
     );
+  }
+
+  getValueTraduct(texte: string) {
+    let result; let result2;
+    const result1 = texte.split(this.translate.currentLang + '>');
+    if(result1.length > 1) { result2 = result1[1].split('</' + this.translate.currentLang + '>'); }
+    if(result1.length > 1 && result2.length > 0) { result = result2[0]; }
+    return result ? result : texte;
   }
 
   archiveCurrentArticle() {

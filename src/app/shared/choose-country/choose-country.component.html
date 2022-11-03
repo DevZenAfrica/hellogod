@@ -26,7 +26,7 @@
               <img src="{{pays.flag}}"/>
             </ion-avatar>
             <ion-label class="pl-1">
-              <span style="font-size: 13px;" [class]="pays.id === idPaySelect ? 'text-orange-600 font-bold' : ''"> {{pays.name}}</span>
+              <span style="font-size: 13px;" [class]="pays.id === idPaySelect ? 'text-orange-600 font-bold' : ''"> {{getValueTraduct(pays.name)}}</span>
             </ion-label>
           </ion-item>
         </div>

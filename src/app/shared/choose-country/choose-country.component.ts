@@ -7,6 +7,7 @@ import {StorageService} from '../../services/storage.service';
 import {AuthentificationService} from '../../services/authentification.service';
 import {UtilisateurService} from '../../services/utilisateur.service';
 import {PaysService} from '../../services/pays.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-choose-country',
@@ -21,7 +22,7 @@ export class ChooseCountryComponent implements OnInit {
   paySelect: any;
   isLoading = false;
 
-  constructor(private alertService: AlertService, private alertController: AlertController, private storageService: StorageService, private authService: AuthentificationService, private userService: UtilisateurService, private paysService: PaysService) { }
+  constructor(private translate: TranslateService, private alertService: AlertService, private alertController: AlertController, private storageService: StorageService, private authService: AuthentificationService, private userService: UtilisateurService, private paysService: PaysService) { }
 
   ngOnInit() {
     this.idPaySelect = this.storageService.getItem('paysSelect') ? this.storageService.getItem('paysSelect') : '';
@@ -97,6 +98,14 @@ export class ChooseCountryComponent implements OnInit {
     });
 
     await alert.present();
+  }
+
+  getValueTraduct(texte: string) {
+    let result; let result2;
+    const result1 = texte.split(this.translate.currentLang + '>');
+    if(result1.length > 1) { result2 = result1[1].split('</' + this.translate.currentLang + '>'); }
+    if(result1.length > 1 && result2.length > 0) { result = result2[0]; }
+    return result ? result : texte;
   }
 
   initializeObjetPays(idPays: string) {
