@@ -1,6 +1,6 @@
 <ion-header class="text-white ion-no-border" translucent="true">
   <ion-toolbar color="translucent" *ngIf="isSearch">
-    <ion-searchbar (ionInput)="filterListTransaction($event)" [placeholder]="'Search'" (ionCancel)="isSearch = !isSearch" showCancelButton="always"></ion-searchbar>
+    <ion-searchbar (ionInput)="filterListTransaction($event)" [placeholder]="'6.2' | translate" (ionCancel)="isSearch = !isSearch" showCancelButton="always"></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar color="translucent" *ngIf="!isSearch">
     <ion-buttons slot="start">

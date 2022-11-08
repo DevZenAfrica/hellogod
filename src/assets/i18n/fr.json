@@ -105,5 +105,9 @@
     "1" : "Envoyer avec succès",
     "2" : "L'article a été ajouté avec succès à l'archive",
     "3" : "L'article a été retiré des archives avec succès"
+  },
+  "17" : {
+    "1" : "Résultats",
+    "2" : "Aucun element"
   }
 }

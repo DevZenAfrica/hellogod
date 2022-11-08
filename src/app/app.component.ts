@@ -3,7 +3,7 @@ import {Platform} from '@ionic/angular';
 import firebase from 'firebase';
 import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../environments/environment';
-import {LogCaptureService} from "./services/log-capture.service";
+import {LogCaptureService} from './services/log-capture.service';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,36 @@ export class TextToSpeechService {
         })
         .then(response => console.log(response))
         .catch(err => console.error(err));
+    });
+  }
+
+  async putAudioInDataBase(element) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('TextToSpeech').doc().set(Object.assign({}, element)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getAudioWitchDataBase(texte: string) {
+    return new Promise<string>((resolve, reject) => {
+      firebase.firestore().collection('TextToSpeech').where('txt', '==', texte.toString()).get().then(
+        (docRef) => {
+          let result: any;
+          docRef.forEach(function(doc) {
+            result = doc.data().url;
+          });
+          resolve(result as any);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
 

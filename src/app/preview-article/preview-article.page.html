@@ -12,7 +12,7 @@
     <h3 class="px-7 my-4 text-white font-medium text-xl">{{getValueTraduct(currentArticle.title)}}</h3>
 
     <div class="px-7 space-x-3 mb-2">
-      <ion-chip *ngFor="let tag of currentArticle.tags" class="backdrop-blur-sm bg-white/30 rounded text-white font-light mx-0 text-sm py-1">{{getValueTraduct(tag)}}</ion-chip>
+      <ion-chip routerLink="../../search/{{getValueTraduct(tag)}}" *ngFor="let tag of currentArticle.tags" class="backdrop-blur-sm bg-white/30 rounded text-white font-light mx-0 text-sm py-1">{{getValueTraduct(tag)}}</ion-chip>
     </div>
 
     <div class="bg-white p-4">
@@ -21,11 +21,11 @@
         <div class="text-right">{{(currentArticle.dateEvent ? currentArticle.dateEvent : (currentArticle.datePublication ? currentArticle.datePublication : currentArticle.date)) | date : 'd MMM yyyy HH:mm'}}</div>
       </div>
 
-      <div class="text-sm font-light" *ngIf="!currentArticle.content.includes('http://') && !currentArticle.content.includes('https://')" [innerHTML]="getValueTraduct(currentArticle.content)"></div>
+      <div class="text-sm font-light" *ngIf="!currentArticle.content.includes('p>http://') && !currentArticle.content.includes('p>https://')" [innerHTML]="getValueTraduct(currentArticle.content)"></div>
 
       <!--iframe class="px-4 w-full h-96" *ngIf="currentArticle.content.includes('http://') || currentArticle.content.includes('https://')" [src]="linkj"></iframe-->
 
-      <div class="text-center py-8" *ngIf="currentArticle.content.includes('http://') || currentArticle.content.includes('https://') && !linkj">
+      <div class="text-center py-8" *ngIf="currentArticle.content.includes('p>http://') || currentArticle.content.includes('p>https://') && !linkj">
         <div role="status">
           <svg class="inline mr-2 w-8 h-8 text-gray-200 animate-spin fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -34,17 +34,16 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-
-      <div *ngIf="currentArticle.content.includes('http://') || currentArticle.content.includes('https://') && linkj" [innerHTML]="getValueTraduct(linkj)"></div>
+      <div *ngIf="currentArticle.content.includes('p>http://') || currentArticle.content.includes('p>https://') && linkj" [innerHTML]="linkj"></div>
     </div>
   </section>
 
-  <div *ngIf="currentArticle && currentArticle.allowComment" class="px-5 py-5" id="liste_comment">
+  <div *ngIf="currentArticle && currentArticle.allowComment === 1" class="px-5 py-5" id="liste_comment">
     <app-miniature-comment [data]="comment" [idComment]="comment.id" *ngFor="let comment of currentComment"></app-miniature-comment>
   </div>
 </ion-content>
 
-<ion-footer translucent="true" class="backdrop-blur-sm bg-black/75" *ngIf="currentArticle && currentArticle.allowComment">
+<ion-footer translucent="true" class="backdrop-blur-sm bg-black/75" *ngIf="currentArticle && currentArticle.allowComment === 1">
   <ion-toolbar color="translucent" class="px-2 text-white">
     <textarea *ngIf="isComment" [(ngModel)]="writeComment" [rows]="isComment ? '3' : '1'" placeholder="Write..." id="input-comment" class="{{isComment ? 'my-2' : ''}} bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
     <ion-buttons slot="end">

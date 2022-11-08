@@ -105,5 +105,9 @@
     "1": "Send with success",
     "2": "The article has been successfully added to the archive",
     "3": "The article has been successfully removed from the archive"
+  },
+  "17" : {
+    "1" : "Results",
+    "2" : "No element"
   }
 }

@@ -35,11 +35,10 @@ export class PreviewArticlePage implements OnInit {
     this.articleService.getArticleWitchId(this.activatedRoute.snapshot.paramMap.get('id')).then(
       (data) => {
         this.currentArticle = data;
-        if(this.currentArticle.content.includes('http://') || this.currentArticle.content.includes('https://')) {
-          this.apiService.getDataWitchApi(data.content).then(
+        if(this.currentArticle.content.includes('p>http://') || this.currentArticle.content.includes('p>https://')) {
+          this.apiService.getDataWitchApi(this.deleteBaliseParam('p', this.getValueTraduct( data.content))).then(
             (result) => {
               const tmpLinkj: any = result;
-              //this.linkj = result; console.log(this.linkj);
               this.linkj = tmpLinkj.replace('skin', 'src=');
             }
           );
@@ -117,12 +116,16 @@ export class PreviewArticlePage implements OnInit {
     );
   }
 
+  deleteBaliseParam(tag, texte) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(tag).length > 0 ? wrapper.getElementsByTagName(tag)[0].innerHTML : texte;
+  }
+
   getValueTraduct(texte: string) {
-    let result; let result2;
-    const result1 = texte.split(this.translate.currentLang + '>');
-    if(result1.length > 1) { result2 = result1[1].split('</' + this.translate.currentLang + '>'); }
-    if(result1.length > 1 && result2.length > 0) { result = result2[0]; }
-    return result ? result : texte;
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(this.translate.currentLang).length > 0 ? wrapper.getElementsByTagName(this.translate.currentLang)[0].innerHTML : texte;
   }
 
   archiveCurrentArticle() {

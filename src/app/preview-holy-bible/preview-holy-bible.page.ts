@@ -3,6 +3,9 @@ import {ActivatedRoute} from "@angular/router";
 import {HolybibleService} from "../services/holybible.service";
 import {TextToSpeechService} from "../services/text-to-speech.service";
 import {StorageService} from "../services/storage.service";
+import {ApiService} from "../services/api.service";
+import {ToolsService} from '../services/tools.service';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-preview-holy-bible',
@@ -23,7 +26,7 @@ export class PreviewHolyBiblePage implements OnInit {
   indexPlay = 0;
   dataTextPlay;
 
-  constructor(private route: ActivatedRoute, private holyBibleService: HolybibleService, private textToSpeechService: TextToSpeechService, private storageService: StorageService) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private holyBibleService: HolybibleService, private textToSpeechService: TextToSpeechService, private storageService: StorageService) { }
 
   ngOnInit() {
     if(this.route.snapshot.queryParams.familyBook) { this.familyBook = this.route.snapshot.queryParams.familyBook; }
@@ -46,10 +49,25 @@ export class PreviewHolyBiblePage implements OnInit {
 
   playText() {
     this.isLoadingAudio = true;
-    this.textToSpeechService.getSoundPost(this.contenu[this.indexPlay].text.toString(), this.storageService.getItem('language').toLowerCase()).then(
-      (data: any) => {
-        this.dataTextPlay = data.result.audio_url;
-        this.isLoadingAudio = false;
+    this.textToSpeechService.getAudioWitchDataBase(this.contenu[this.indexPlay].text.toString()).then(
+      (res) => {
+        if(res) {
+          this.dataTextPlay = res;
+          this.isLoadingAudio = false;
+        } else {
+          this.textToSpeechService.getSoundPost(this.contenu[this.indexPlay].text.toString(), this.storageService.getItem('language').toLowerCase()).then(
+            (data: any) => {
+              this.dataTextPlay = data.result.audio_url;
+              this.isLoadingAudio = false;
+
+              this.apiService.getDataWitchApi(environment.apiDuplicateFileInServer + this.dataTextPlay.toString()).then(
+                (result) => {
+                  this.textToSpeechService.putAudioInDataBase({txt: this.contenu[this.indexPlay].text.toString(), url: result, language: this.storageService.getItem('language').toLowerCase(), extraData: this.familyBook + ' @ ' + this.book + ' @ ' + this.chap + ' @ ' + this.verse});
+                }
+              );
+            }
+          );
+        }
       }
     );
   }
@@ -62,6 +80,15 @@ export class PreviewHolyBiblePage implements OnInit {
     } else {
       this.dataTextPlay = '';
     }
+  }
+
+  async audioToBase64(audioFile) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = (e) => resolve(e.target.result);
+      reader.readAsDataURL(audioFile); console.log('recup ', reader.readAsDataURL(audioFile));
+    });
   }
 
   updateIndexPlay(index) {

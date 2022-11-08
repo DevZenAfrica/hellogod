@@ -5,7 +5,7 @@ export class Article {
   vues: string[];
   idCountry: string[];
   miniatureTop = '';
-  allowComment: boolean;
+  allowComment: number;
 
   constructor(public id: string, public title: string, public content: string, public status: number, public description: string, public miniature: string, public tags: string[], public dateEvent: string, public datePublication: string, public categorie: string, public created_by: string) {
     this.date = new Date().toString();
@@ -14,6 +14,6 @@ export class Article {
     this.vues = [];
     this.idCountry = [];
     this.miniatureTop = '';
-    this.allowComment = true;
+    this.allowComment = 1;
   }
 }

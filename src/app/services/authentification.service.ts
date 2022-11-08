@@ -6,7 +6,10 @@ import {ApiService} from './api.service';
 import firebase from 'firebase';
 import {Utilisateur} from '../models/utilisateur';
 import {PaysService} from './pays.service';
+import {environment} from '../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
+declare function getURLParameter(sParam: any): any;
 declare function getMsisdn(): any;
 declare function getCountry(): any;
 declare const globalUserName: any;
@@ -17,7 +20,7 @@ declare const avatarUser: any;
 })
 export class AuthentificationService {
 
-  constructor(private sanitizer: DomSanitizer, private apiService: ApiService, private toolsService: ToolsService, private userService: UtilisateurService, private paysService: PaysService) { }
+  constructor(private translate: TranslateService, private sanitizer: DomSanitizer, private apiService: ApiService, private toolsService: ToolsService, private userService: UtilisateurService, private paysService: PaysService) { }
 
   signInUser(email: string, password: string) {
     return new Promise<void>((resolve, reject) => {
@@ -104,14 +107,27 @@ export class AuthentificationService {
   async saveToDataBase(user: Utilisateur) {
     return new Promise<void>((resolve, reject) => {
       if(user.phone) { user.id = user.phone; } else { user.id = user.email; }
-      firebase.firestore().collection('comptes').doc(user.id).set(Object.assign({}, user)).then(
-        () => {
-          resolve();
-        },
-        (error) => {
-          reject(error);
-        }
-      );
+      this.apiService.getDataWitchApi(environment.apiGetIpAdress + environment.keyGetIpAdress, 'json').then(
+        (data) => {
+          user.ipAdressInfo = JSON.stringify(data);
+          firebase.firestore().collection('comptes').doc(user.id).set(Object.assign({}, user)).then(
+            () => {
+              resolve();
+            },
+            (error) => {
+              reject(error);
+            }
+          );
+        }, (error) => {
+          firebase.firestore().collection('comptes').doc(user.id).set(Object.assign({}, user)).then(
+            () => {
+              resolve();
+            },
+            (error0) => {
+              reject(error0);
+            }
+          );
+        });
     });
   }
 
@@ -120,10 +136,21 @@ export class AuthentificationService {
       if(localStorage.getItem('id')) {
         this.userService.getCurrentUtilisateur().then(
           (data) => {
-            //if(data.typeInscription === 'ayoba' && data.photo !== avatarUser) { data.photo = avatarUser; this.userService.updateCurrentUser(data); }
+
+            if(!data.ipAdressInfo) { // Update IP Adresse
+              this.apiService.getDataWitchApi(environment.apiGetIpAdress + environment.keyGetIpAdress, 'json').then(
+                (ap) => {
+                  data.ipAdressInfo = JSON.stringify(ap);
+                  this.userService.updateCurrentUser(data);
+                });
+            }
+            if(data.typeInscription === 'ayoba' && !data.jidAyoba) { // Update JID ayoba
+              data.jidAyoba = getURLParameter('jid');
+            }
+
             localStorage.setItem('paysSelect', data.idCountry);
             localStorage.setItem('language', data.language);
-            //this.translate.setDefaultLang(data.language);
+            this.translate.setDefaultLang(data.language);
             resolve(true);
           }
         );
@@ -135,6 +162,7 @@ export class AuthentificationService {
               if (!rep) {
                 const tmpUser: Utilisateur = new Utilisateur(globalUserName ? globalUserName.slice(0, 10) : null, getMsisdn(), '', 1, '0000', 'ayoba');
                 tmpUser.idCountry = getCountry();
+                tmpUser.jidAyoba = getURLParameter('jid');
                 //tmpUser.photo = avatarUser;
                 localStorage.setItem('paysSelect', getCountry());
                 this.saveToDataBase(tmpUser).then(

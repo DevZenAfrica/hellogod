@@ -7,6 +7,8 @@ export class Utilisateur {
   idCountry: string;
   archives: string[];
   language: string;
+  jidAyoba: string;
+  ipAdressInfo: string;
 
   constructor(public userName: string, public phone: string, public email: string, public status: number, public role: string, public typeInscription: string) {
     const gid = new ToolsService();
@@ -15,5 +17,7 @@ export class Utilisateur {
     this.idCountry = '';
     this.archives = [];
     this.language = '';
+    this.jidAyoba = '';
+    this.ipAdressInfo = '';
   }
 }
