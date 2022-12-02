@@ -31,7 +31,7 @@ export class TextToSpeechService {
 
     return new Promise<void>((resolve, reject) => {
       fetch('https://cloudlabs-text-to-speech.p.rapidapi.com/synthesize', options)
-        .then(response => {
+        .then(response => { console.log(response.json());
           resolve((response.json() as any));
         })
         .then(response => console.log(response))

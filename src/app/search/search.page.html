@@ -1,5 +1,5 @@
 <ion-header class="text-white ion-no-border" translucent="true">
-<ion-toolbar color="translucent">
+  <ion-toolbar color="translucent" class="backdrop-blur-sm bg-black/25">
     <ion-searchbar (ionChange)="reloadSearch()" [(ngModel)]="currentSearch" (ionCancel)="backToPreview()" [placeholder]="'6.2' | translate" showCancelButton="always"></ion-searchbar>
   </ion-toolbar>
 </ion-header>

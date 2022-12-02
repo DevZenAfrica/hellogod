@@ -25,7 +25,7 @@ export class ArticleService {
   async getTopArticles() {
     return new Promise<Article[]>((resolve, reject) => {
       // @ts-ignore
-      firebase.firestore().collection('articles').where('miniatureTop', '!=', '').onSnapshot(
+      firebase.firestore().collection('articles').where('status', '==', 1).where('miniatureTop', '!=', '').onSnapshot(
         (docRef) => {
           const result: Article[] = [];
           docRef.forEach(function(doc) {

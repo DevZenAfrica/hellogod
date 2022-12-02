@@ -66,6 +66,7 @@ export class ChooseCountryComponent implements OnInit {
                     this.paySelect = paysChoice;
                     this.idPaySelect = paysChoice.id;
                     this.isLoading = false;
+                    location.reload();
                   }
                 );
               }
@@ -75,6 +76,7 @@ export class ChooseCountryComponent implements OnInit {
             this.paySelect = paysChoice;
             this.idPaySelect = paysChoice.id;
             this.isLoading = false;
+            location.reload();
           }
         }
       );

@@ -1,10 +1,10 @@
 <ion-header class="text-white ion-no-border" translucent="true">
-  <ion-toolbar color="translucent" *ngIf="isSearch">
+  <ion-toolbar color="translucent" *ngIf="isSearch" class="backdrop-blur-sm bg-black/25">
     <ion-searchbar (ionInput)="filterListTransaction($event)" [placeholder]="'6.2' | translate" (ionCancel)="isSearch = !isSearch" showCancelButton="always"></ion-searchbar>
   </ion-toolbar>
-  <ion-toolbar color="translucent" *ngIf="!isSearch">
+  <ion-toolbar color="translucent" *ngIf="!isSearch" class="backdrop-blur-sm bg-black/25">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/betweenus"></ion-back-button>
+      <ion-back-button defaultHref="tabs"></ion-back-button>
       <ion-title class="font-medium">{{'7.1' | translate}}</ion-title>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -15,7 +15,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar color="translucent" *ngIf="!isSearch">
+  <ion-toolbar color="translucent" *ngIf="!isSearch" class="backdrop-blur-sm bg-black/25">
     <ion-segment (ionChange)="segmentChanged($event)" value="upcomming" color="primary" class="border-b border-gray-700">
       <ion-segment-button value="upcomming">
         {{'7.2' | translate}}

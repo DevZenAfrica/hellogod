@@ -12,7 +12,9 @@
     <h3 class="px-7 my-4 text-white font-medium text-xl">{{getValueTraduct(currentArticle.title)}}</h3>
 
     <div class="px-7 space-x-3 mb-2">
-      <ion-chip routerLink="../../search/{{getValueTraduct(tag)}}" *ngFor="let tag of currentArticle.tags" class="backdrop-blur-sm bg-white/30 rounded text-white font-light mx-0 text-sm py-1">{{getValueTraduct(tag)}}</ion-chip>
+      <ng-container *ngFor="let tag of currentArticle.tags">
+        <ion-chip *ngIf="tag" routerLink="../../search/{{getValueTraduct(tag)}}" class="backdrop-blur-sm bg-white/30 rounded text-white font-light mx-0 text-sm py-1">{{getValueTraduct(tag)}}</ion-chip>
+      </ng-container>
     </div>
 
     <div class="bg-white p-4">
@@ -22,8 +24,6 @@
       </div>
 
       <div class="text-sm font-light" *ngIf="!currentArticle.content.includes('p>http://') && !currentArticle.content.includes('p>https://')" [innerHTML]="getValueTraduct(currentArticle.content)"></div>
-
-      <!--iframe class="px-4 w-full h-96" *ngIf="currentArticle.content.includes('http://') || currentArticle.content.includes('https://')" [src]="linkj"></iframe-->
 
       <div class="text-center py-8" *ngIf="currentArticle.content.includes('p>http://') || currentArticle.content.includes('p>https://') && !linkj">
         <div role="status">

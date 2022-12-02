@@ -4,11 +4,11 @@ export const environment = {
   apiBible: 'multilingual-bible.p.rapidapi.com',
   apiDuplicateFileInServer: 'http://prss.consonaute.biz/BO/file_loader/?fileLink=',
   numberVersion: 1,
-  version: '08.11.22-16.43',
+  version: '02.12.22-19.16',
   yearVersion: '2022',
   apiTextToSpeech: 'cloudlabs-text-to-speech.p.rapidapi.com',
   rapidApiKey: 'c79e7cce1dmsh6fd8ba52278c9d4p1d6288jsn7bbcd57be239',
-  apiCors: 'https://hidden-castle-88131.herokuapp.com',
+  apiCors: 'https://cors-anywhere-csga2dhzs-dev-opensolution.vercel.app',
   apiGetIpAdress: 'https://api.ipgeolocation.io/ipgeo?apiKey=',
   keyGetIpAdress: 'c9eb1d8aa8d4439b84b57040fd891125',
   firebaseConfig: {

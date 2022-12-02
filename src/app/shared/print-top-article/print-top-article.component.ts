@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Article} from '../../models/article';
-import {ArticleService} from "../../services/article.service";
-import {UtilisateurService} from "../../services/utilisateur.service";
-import {AuthentificationService} from "../../services/authentification.service";
+import {ArticleService} from '../../services/article.service';
+import {UtilisateurService} from '../../services/utilisateur.service';
+import {AuthentificationService} from '../../services/authentification.service';
 
 @Component({
   selector: 'app-print-top-article',
@@ -42,20 +42,25 @@ export class PrintTopArticleComponent implements OnInit {
             if(result) {
               this.userService.getCurrentUtilisateur().then(
                 (data1) => {
-                  data.forEach(function(doc) {
-                    if(!data1.idCountry || doc.idCountry.includes(data1.idCountry)) {
+                  const tmpA = this.trieTableau(data);
+                  tmpA.forEach(function(doc) {
+                    if(!data1.idCountry || doc.idCountry.length === 0 || doc.idCountry.includes(data1.idCountry)) {
                       pointe.articlesTop.push(doc as Article);
                     }
                   });
                 }
               );
             } else {
-              this.articlesTop = data;
+              this.articlesTop = this.trieTableau(data);
             }
           }
         );
       }
     );
+  }
+
+  trieTableau(tableau: any[]) {
+    return tableau.sort((a, b) => a.date - b.date).reverse();
   }
 
 }
