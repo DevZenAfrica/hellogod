@@ -4,7 +4,7 @@ export const environment = {
   apiBible: 'multilingual-bible.p.rapidapi.com',
   apiDuplicateFileInServer: 'http://prss.consonaute.biz/BO/file_loader/?fileLink=',
   numberVersion: 1,
-  version: '02.12.22-19.16',
+  version: '05.12.22-12.03',
   yearVersion: '2022',
   apiTextToSpeech: 'cloudlabs-text-to-speech.p.rapidapi.com',
   rapidApiKey: 'c79e7cce1dmsh6fd8ba52278c9d4p1d6288jsn7bbcd57be239',

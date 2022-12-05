@@ -18,7 +18,7 @@ export class ApiService {
       .set('X-RapidAPI-Host', environment.apiBible);
 
     return new Promise<void>((resolve, reject) => {
-        this.http.get(environment.apiCors + '/' + link, {headers, responseType: type}).subscribe({
+        this.http.get(link, {headers, responseType: type}).subscribe({
           next: (res: any) => {
             resolve(res);
           },

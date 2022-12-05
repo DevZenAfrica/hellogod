@@ -6,6 +6,7 @@ import {StorageService} from "../services/storage.service";
 import {ApiService} from "../services/api.service";
 import {ToolsService} from '../services/tools.service';
 import {environment} from "../../environments/environment";
+import {AlertService} from "../services/alert.service";
 
 @Component({
   selector: 'app-preview-holy-bible',
@@ -26,7 +27,7 @@ export class PreviewHolyBiblePage implements OnInit {
   indexPlay = 0;
   dataTextPlay;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private holyBibleService: HolybibleService, private textToSpeechService: TextToSpeechService, private storageService: StorageService) { }
+  constructor(private alertService: AlertService, private apiService: ApiService, private route: ActivatedRoute, private holyBibleService: HolybibleService, private textToSpeechService: TextToSpeechService, private storageService: StorageService) { }
 
   ngOnInit() {
     if(this.route.snapshot.queryParams.familyBook) { this.familyBook = this.route.snapshot.queryParams.familyBook; }
@@ -38,7 +39,7 @@ export class PreviewHolyBiblePage implements OnInit {
       this.holyBibleService.getVersersWitchBookAndChap(this.book, this.chap, this.storageService.getItem('language').toLowerCase()).then(
         (data) => {
           const pointe = this;
-          this.contenu = data;
+          this.contenu = this.trieTableau(data).reverse();
           this.lastIndexVerse = this.sendTableauNumber(this.recupLastNumberVerser(this.contenu)).length;
           if(this.verse) { this.indexPlay = Number(this.verse) -1; setTimeout(function(){ pointe.scrollToElement('verse_' + pointe.verse.toString()); }, 1000); }
           this.isLoading = false;
@@ -56,7 +57,7 @@ export class PreviewHolyBiblePage implements OnInit {
           this.isLoadingAudio = false;
         } else {
           this.textToSpeechService.getSoundPost(this.contenu[this.indexPlay].text.toString(), this.storageService.getItem('language').toLowerCase()).then(
-            (data: any) => {
+            (data: any) => { console.log('bien recu ', data.result.audio_url);
               this.dataTextPlay = data.result.audio_url;
               this.isLoadingAudio = false;
 
@@ -65,6 +66,8 @@ export class PreviewHolyBiblePage implements OnInit {
                   this.textToSpeechService.putAudioInDataBase({txt: this.contenu[this.indexPlay].text.toString(), url: result, language: this.storageService.getItem('language').toLowerCase(), extraData: this.familyBook + ' @ ' + this.book + ' @ ' + this.chap + ' @ ' + this.verse});
                 }
               );
+            }, (error) => {
+              this.alertService.print(error);
             }
           );
         }
@@ -110,6 +113,10 @@ export class PreviewHolyBiblePage implements OnInit {
 
   recupLastNumberVerser(tab) {
     return tab.length > 0 ? (tab.pop() as any).verse : 0;
+  }
+
+  trieTableau(tableau: any[]) {
+    return tableau.sort((a, b) => a.verse - b.verse).reverse();
   }
 
 }

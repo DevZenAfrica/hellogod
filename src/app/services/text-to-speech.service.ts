@@ -13,7 +13,7 @@ export class TextToSpeechService {
   getSoundPost(textBase: string, language: string) {
 
     const encodedParams = new URLSearchParams();
-    encodedParams.append('voice_code', language === 'fr' ? 'fr-FR-4' : 'en-GB-6');
+    encodedParams.append('voice_code', language === 'fr' ? 'fr-FR-1' : 'en-GB-1');
     encodedParams.append('text', textBase);
     encodedParams.append('speed', '1.00');
     encodedParams.append('pitch', '1.00');
@@ -31,11 +31,12 @@ export class TextToSpeechService {
 
     return new Promise<void>((resolve, reject) => {
       fetch('https://cloudlabs-text-to-speech.p.rapidapi.com/synthesize', options)
-        .then(response => { console.log(response.json());
+        .then(response => {
           resolve((response.json() as any));
         })
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+        .catch(err => {
+          reject(err);
+        });
     });
   }
 
