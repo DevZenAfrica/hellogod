@@ -57,7 +57,7 @@ export class PreviewHolyBiblePage implements OnInit {
           this.isLoadingAudio = false;
         } else {
           this.textToSpeechService.getSoundPost(this.contenu[this.indexPlay].text.toString(), this.storageService.getItem('language').toLowerCase()).then(
-            (data: any) => { console.log('bien recu ', data.result.audio_url);
+            (data: any) => {
               this.dataTextPlay = data.result.audio_url;
               this.isLoadingAudio = false;
 
@@ -83,15 +83,6 @@ export class PreviewHolyBiblePage implements OnInit {
     } else {
       this.dataTextPlay = '';
     }
-  }
-
-  async audioToBase64(audioFile) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onerror = reject;
-      reader.onload = (e) => resolve(e.target.result);
-      reader.readAsDataURL(audioFile); console.log('recup ', reader.readAsDataURL(audioFile));
-    });
   }
 
   updateIndexPlay(index) {
