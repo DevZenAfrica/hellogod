@@ -8,11 +8,11 @@ export const environment = {
   apiBible: 'multilingual-bible.p.rapidapi.com',
   apiDuplicateFileInServer: 'https://prss.consonaute.biz/BO/file_loader/?fileLink=',
   numberVersion: 0,
-  version: '05.12.22-17.05',
+  version: '08.12.22-18.37',
   yearVersion: '2022',
   apiTextToSpeech: 'cloudlabs-text-to-speech.p.rapidapi.com',
   rapidApiKey: 'c79e7cce1dmsh6fd8ba52278c9d4p1d6288jsn7bbcd57be239',
-  apiCors: 'https://cors-anywhere-csga2dhzs-dev-opensolution.vercel.app',
+  apiCors: 'https://cors-anywhere-zen.onrender.com',
   apiGetIpAdress: 'https://api.ipgeolocation.io/ipgeo?apiKey=',
   keyGetIpAdress: 'c9eb1d8aa8d4439b84b57040fd891125',
   firebaseConfig: {

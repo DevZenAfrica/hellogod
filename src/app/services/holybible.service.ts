@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import {ApiService} from './api.service';
 import {FamilyBook} from '../models/familyBook';
-import {ChaptersBook} from "../models/chaptersBook";
 
 @Injectable({
   providedIn: 'root'
